@@ -1,6 +1,9 @@
 package client;
 
+import javafx.util.Pair;
+
 import java.io.*;
+import java.math.BigInteger;
 import java.nio.file.Files;
 import java.util.List;
 
@@ -47,8 +50,9 @@ class DataKeeper {
         writeTextToFile(text, dataToSend);
     }
 
-    void sendRSA(final String rsa) {
-        writeTextToFile(rsa, this.rsa);
+    void sendRSA(final Pair<BigInteger, BigInteger> rsa) {
+        final String rsaString = rsa.getKey().toString() + "\n" + rsa.getValue().toString();
+        writeTextToFile(rsaString, this.rsa);
     }
 
     private void writeTextToFile(final String text, final File file){

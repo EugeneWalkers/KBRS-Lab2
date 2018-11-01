@@ -1,47 +1,44 @@
 package client;
 
+import javafx.util.Pair;
+
+import java.math.BigInteger;
+
 final class RSA {
 
-    private StringBuilder openRSA;
-    private StringBuilder closeRSA;
+    private final Pair<BigInteger, BigInteger> openRSA;
+    private final Pair<BigInteger, BigInteger> closeRSA;
 
-    {
-        openRSA = new StringBuilder();
-        closeRSA = new StringBuilder();
+    private RSA(final Pair<BigInteger, BigInteger> openRSA, final Pair<BigInteger, BigInteger> closeRSA) {
+        this.openRSA = openRSA;
+        this.closeRSA = closeRSA;
     }
 
-    private RSA(final String openKey, final String closeKey){
-        this.openRSA.append(openKey);
-        this.closeRSA.append(closeKey);
+    Pair<BigInteger, BigInteger> getOpenRSA() {
+        return openRSA;
     }
 
-    static RSA generateRSA(){
-
-        final String openRSA = generateOpenRSA();
-        final String closeRSA = generateCloseRSA();
-
-        return new RSA(openRSA, closeRSA);
+    Pair<BigInteger, BigInteger> getCloseRSA() {
+        return closeRSA;
     }
 
-    private static String generateOpenRSA() {
+    static class RSAGenerator {
 
-        // TODO: write generator of open RSA
+        // TODO: put you any needed values here
+        // ...
 
-        return null;
-    }
+        private RSAGenerator() {
+            // do not put any code here
+        }
 
-    private static String generateCloseRSA() {
+        static RSA generateRSA() {
 
-        // TODO: write generator of closed RSA
+            // TODO: put you code here
 
-        return null;
-    }
+            Pair<BigInteger, BigInteger> openRSA = null;
+            Pair<BigInteger, BigInteger> closeRSA = null;
 
-    String getOpenRSA() {
-        return openRSA.toString();
-    }
-
-    String getCloseRSA() {
-        return closeRSA.toString();
+            return new RSA(openRSA, closeRSA);
+        }
     }
 }

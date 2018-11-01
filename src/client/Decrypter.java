@@ -1,5 +1,9 @@
 package client;
 
+import javafx.util.Pair;
+
+import java.math.BigInteger;
+
 class Decrypter {
 
 //    private final static String AES_TYPE = "AES/CFB/NoPadding";
@@ -8,11 +12,11 @@ class Decrypter {
 
     private String key;
 
-    public String getKey() {
+    String getKey() {
         return key;
     }
 
-    public void setKey(String key) {
+    void setKey(String key) {
         this.key = key;
     }
 
@@ -61,12 +65,12 @@ class Decrypter {
 //    }
 
     static class KeyDecrypter {
-        static String decryptKey(final String encryptedKey, final String rsa) {
-            if (rsa == null){
+        static String decryptKey(final String encryptedKey, final Pair<BigInteger, BigInteger> rsa) {
+            if (rsa == null) {
                 throw new NullPointerException("RSA is not declared");
             }
 
-            if (encryptedKey == null){
+            if (encryptedKey == null) {
                 return null;
             }
 

@@ -4,10 +4,10 @@ import java.io.IOException;
 
 public class Client {
 
-    private RSA rsa;
     private final DataKeeper dataKeeper;
     private final Decrypter decrypter;
     private final StringBuilder encryptedKey;
+    private RSA rsa;
 
     {
         dataKeeper = new DataKeeper();
@@ -16,7 +16,7 @@ public class Client {
     }
 
     public void generateRSA() {
-        rsa = RSA.generateRSA();
+        rsa = RSA.RSAGenerator.generateRSA();
     }
 
     public void sendRSA() {

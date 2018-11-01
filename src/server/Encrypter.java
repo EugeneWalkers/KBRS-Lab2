@@ -1,7 +1,5 @@
 package server;
 
-import validators.RSAValidator;
-
 class Encrypter {
 
 //    private final static String AES_TYPE = "AES/CFB/NoPadding";
@@ -52,9 +50,6 @@ class Encrypter {
                 throw new NullPointerException("RSA is null");
             }
 
-            if (!RSAValidator.isRSAValid(rsa)){
-                throw new IllegalArgumentException("RSA is not valid");
-            }
             // TODO: write encrypter for key within rsa
 
             return null;
