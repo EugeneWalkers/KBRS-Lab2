@@ -36,7 +36,7 @@ public class Server {
     }
 
     public void encryptKey(){
-        encrypter.setKey(Encrypter.KeyEncrypter.cryptKey(rsa.toString()));
+        encrypter.setKey(Encrypter.KeyEncryptor.cryptKey(rsa.toString()));
     }
 
     public void sendKeyResponse(){

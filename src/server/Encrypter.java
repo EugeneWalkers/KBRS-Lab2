@@ -44,13 +44,13 @@ class Encrypter {
         return null;
     }
 
-    static class KeyEncrypter {
+    static class KeyEncryptor {
         static String cryptKey(final String rsa) {
             if (rsa == null) {
                 throw new NullPointerException("RSA is null");
             }
 
-            // TODO: write encrypter for key within rsa
+            // TODO: write encryptor for key within rsa
 
             return null;
         }
