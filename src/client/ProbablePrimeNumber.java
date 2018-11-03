@@ -12,12 +12,8 @@ class ProbablePrimeNumber {
         if (number.mod(BigInteger.valueOf(2)).equals(BigInteger.ZERO)) {
             number = number.subtract(BigInteger.ONE);
         }
-        while (!this.isProbablePrime()) {
+        while (!isProbablePrime()) {
             number = number.add(BigInteger.valueOf(2));
-            int length = number.toString().length();
-            System.out.println(number);
-            System.out.println(length);
-            System.out.println("answer = " + this.isProbablePrime());
         }
 
     }
@@ -26,7 +22,7 @@ class ProbablePrimeNumber {
         return number;
     }
 
-    public static boolean areMutuallyPrime(BigInteger a, BigInteger b) {
+    static boolean areMutuallyPrime(BigInteger a, BigInteger b) {
         return euklid(a,b).equals(BigInteger.ONE);
     }
 
@@ -86,7 +82,7 @@ class ProbablePrimeNumber {
     ProbablePrimeNumber anotherOne() {
         ProbablePrimeNumber another = new ProbablePrimeNumber();
         while (number.equals(another.number)) {
-            System.out.println("EQUALS!");
+//            System.out.println("EQUALS!");
             another = new ProbablePrimeNumber();
         }
         return another;

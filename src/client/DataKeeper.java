@@ -35,15 +35,8 @@ class DataKeeper {
         keyEncrypted = new File("keyEncrypted.txt");
     }
 
-    void receiveEncryptedText() throws IOException {
-        final List<String> textInList = Files.readAllLines(dataToReceive.toPath());
-        final StringBuilder textBuilder = new StringBuilder();
-
-        for (int i = 0; i < textInList.size(); i++) {
-            textBuilder.append(textInList.get(i));
-        }
-
-        writeTextToFile(textBuilder.toString(), dataToReceive);
+    String receiveEncryptedData(){
+        return readTextFromFile(dataToReceive);
     }
 
     void sendText(final String text){
@@ -51,7 +44,7 @@ class DataKeeper {
     }
 
     void sendRSA(final Pair<BigInteger, BigInteger> rsa) {
-        final String rsaString = rsa.getKey().toString() + "\n" + rsa.getValue().toString();
+        final String rsaString = rsa.getKey().toString() + System.lineSeparator() + rsa.getValue().toString();
         writeTextToFile(rsaString, this.rsa);
     }
 
@@ -64,18 +57,21 @@ class DataKeeper {
     }
 
     String receiveEncryptedKey() {
-        return readOneLineTextFromFile(keyEncrypted);
+        return readTextFromFile(keyEncrypted);
     }
 
-    private String readOneLineTextFromFile(final File file){
-        try (final BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            final String key = reader.readLine();
-            reader.close();
+    private String readTextFromFile(final File file){
+        try {
+            final List<String> listOfKeys = Files.readAllLines(file.toPath());
+            final StringBuilder builder = new StringBuilder();
 
-            return key;
+            for (int i=0; i<listOfKeys.size(); i++){
+                builder.append(listOfKeys.get(i) + "\n");
+            }
+
+            return builder.toString();
         } catch (IOException e) {
             e.printStackTrace();
-
             return null;
         }
     }

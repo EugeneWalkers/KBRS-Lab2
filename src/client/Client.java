@@ -1,7 +1,5 @@
 package client;
 
-import java.io.IOException;
-
 public class Client {
 
     private final DataKeeper dataKeeper;
@@ -17,6 +15,9 @@ public class Client {
 
     public void generateRSA() {
         rsa = RSA.RSAGenerator.generateRSA();
+        System.out.println("Generated open RSA from client = " + rsa.getOpenRSA());
+        System.out.println("Generated close RSA from client = " + rsa.getCloseRSA());
+        System.out.println();
     }
 
     public void sendRSA() {
@@ -27,9 +28,11 @@ public class Client {
         decrypter.setKey(
                 Decrypter.KeyDecrypter.decryptKey(
                         encryptedKey.toString(),
-                        rsa.getOpenRSA()
+                        rsa.getCloseRSA()
                 )
         );
+        System.out.println("Decrypted key = " + decrypter.getKey());
+        System.out.println();
     }
 
     public void sendDataRequest(final String data) {
@@ -41,12 +44,12 @@ public class Client {
         encryptedKey.append(dataKeeper.receiveEncryptedKey());
     }
 
-    public void receiveEncryptedText() {
-        try {
-            dataKeeper.receiveEncryptedText();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void receiveEncryptedData() {
+        dataKeeper.receiveEncryptedData();
+    }
+
+    public String decryptData() {
+        return decrypter.decrypt(dataKeeper.receiveEncryptedData());
     }
 
 }

@@ -1,5 +1,8 @@
 package server;
 
+import java.math.BigInteger;
+import java.util.Random;
+
 class AES {
 
     private StringBuilder aes;
@@ -8,14 +11,10 @@ class AES {
         aes = new StringBuilder();
     }
 
-    static String generateAES(final String rsa) {
-        if (rsa == null) {
-            throw new NullPointerException("RSA is not declared");
-        }
+    static String generateAES() {
+        final BigInteger integer = new BigInteger(128, new Random());
 
-        // TODO: write aes
-
-        return null;
+        return integer.toString();
     }
 
     String getAes() {

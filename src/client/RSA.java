@@ -45,8 +45,8 @@ final class RSA {
             r = p.getNumber().multiply(q.getNumber());//n
             d = multInverse(euler, e);
 
-            Pair<BigInteger, BigInteger> openRSA = new Pair<>(e, r);
-            Pair<BigInteger, BigInteger> closeRSA = new Pair<>(d, euler);
+            final Pair<BigInteger, BigInteger> openRSA = new Pair<>(e, r);
+            final Pair<BigInteger, BigInteger> closeRSA = new Pair<>(d, r);
 
             return new RSA(openRSA, closeRSA);
         }

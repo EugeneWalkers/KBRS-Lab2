@@ -38,12 +38,12 @@ class DataKeeper {
     }
 
     void sendEncryptedKey(final String encryptedKey) {
-        sendDataToFile(encryptedKey, rsa);
+        sendDataToFile(encryptedKey, keyEncrypted);
     }
 
     private void sendDataToFile(final String data, final File file){
         try (final PrintWriter writer = new PrintWriter(file)) {
-            writer.write(data);
+            writer.print(data);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -62,10 +62,13 @@ class DataKeeper {
 
     String receiveRSA() {
         try (final BufferedReader reader = new BufferedReader(new FileReader(rsa))) {
-            final String RSA = reader.readLine();
+            final StringBuilder rsa = new StringBuilder();
+            rsa.append(reader.readLine());
+            rsa.append("\n");
+            rsa.append(reader.readLine());
             reader.close();
 
-            return RSA;
+            return rsa.toString();
         } catch (IOException e) {
             e.printStackTrace();
 
