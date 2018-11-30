@@ -69,7 +69,7 @@ class Encrypter {
             final StringBuilder bytesAsIntBuilder = new StringBuilder();
             for (int i = 0; i < encrypted.length; i++) {
                 byte someByte = encrypted[i];
-                bytesAsIntBuilder.append((int) someByte + (i == encrypted.length - 1? "": ":"));
+                bytesAsIntBuilder.append((int) someByte).append(i == encrypted.length - 1 ? "" : ":");
             }
 
             return bytesAsIntBuilder.toString();
